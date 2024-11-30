@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tebak Khodam Lucu</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+
+        p {
+            color: #777;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .form-label {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+
+        button {
+            background-color: #ff0800; /* Red button */
+            color: white;
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #c9302c; /* Darker red on hover */
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        .alert-info {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Tebak Khodam</h1>
+        <p>Masukkan Nama Anda, dan Robert Akan Memberikan Nama Khodam yang Lucu!</p>
+        
+        <!-- Form -->
+        <form id="khodamForm">
+            <div class="mb-3">
+                <label for="nama" class="form-label">Masukkan Nama Anda</label>
+                <input type="text" class="form-control" id="nama" required>
+            </div>
+            <button type="submit">Tebak Khodam!</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Array khodam lucu yang akan ditampilkan
+        const khodams = [
+            "Khodam Si Lempar Pisang",
+            "Khodam Si Sering Baper",
+            "Khodam Ceker Naga",
+            "Khodam Ratu Jamu",
+            "Khodam Tukang Ngambek",
+            "Khodam Si Bantal Empuk",
+            "Khodam Kucing Berekor Emas",
+            "Khodam Si Tukang Ngopi"
+        ];
+
+        document.getElementById('khodamForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Ambil nama yang dimasukkan
+            const nama = document.getElementById('nama').value.trim();
+
+            // Jika nama kosong
+            if (!nama) {
+                alert("Masukkan Nama Anda!");
+                return;
+            }
+
+            // Pilih khodam secara acak
+            const randomKhodam = khodams[Math.floor(Math.random() * khodams.length)];
+
+            // Tampilkan hasil khodam yang lucu
+            document.getElementById('result').innerHTML = `
+                <div class="alert alert-info">
+                    Hai, ${nama}! Khodam Anda adalah <strong>${randomKhodam}</strong>! <br>
+                    Semoga win streak ya!
+                </div>
+            `;
+
+            // Kosongkan input nama
+            document.getElementById('nama').value = '';
+        });
+    </script>
+
+</body>
+</html>
